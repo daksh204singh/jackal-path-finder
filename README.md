@@ -88,8 +88,8 @@ The project integrates several key robotics concepts: **SLAM**, **autonomous nav
      ```
    
    **Watch the SLAM process in action:**
-   
-   https://github.com/daksh204singh/jackal-path-finder/assets/main/videos/SLAM.mp4
+
+https://github.com/user-attachments/assets/300c0346-c5cb-4fd5-b093-0a235e140853
 
 4. **Anomaly Detection:**
    - Launch the anomaly detection node:
@@ -103,8 +103,8 @@ The project integrates several key robotics concepts: **SLAM**, **autonomous nav
    - Subscribe to `/anomaly_detection/image` topic to see real-time detection results
    
    **See the anomaly detector identifying the target:**
-   
-   https://github.com/daksh204singh/jackal-path-finder/assets/main/videos/Anomaly_Detection.mp4
+
+https://github.com/user-attachments/assets/b44c3568-0a65-4f23-a16a-f81e30ffbe80
 
 5. **Navigation (NAV2):** Launch the NAV2 stack with the previously saved map:
    ```bash
@@ -127,10 +127,9 @@ The project integrates several key robotics concepts: **SLAM**, **autonomous nav
 
 **View the multi-robot system in operation:**
 
-<video width="100%" controls>
-  <source src="assets/videos/Individual_Robot_Camera_Feed.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+https://github.com/user-attachments/assets/f92f87ce-1484-4756-8641-fb2ddab44298
+
+
 
 ## Repository Structure
 
