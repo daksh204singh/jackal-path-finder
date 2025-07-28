@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+      <link name="lidar_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <!-- Here we represent the LiDAR as a small cylinder -->
+        <cylinder radius="0.05" length="0.02"/>
+      </geometry>
+      <material name="silver">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0"
+               iyy="0.0001" iyz="0"
+               izz="0.0001"/>
+    </inertial>
+  </link>
+
+  <!-- Fixed joint to mount the LiDAR sensor on top of the Jackal's base -->
+  <joint name="lidar_mount_joint" type="fixed">
+    <!-- Adjust the parent link if your Jackal URDF uses a different name -->
+    <parent link="base_link"/>
+    <child link="lidar_link"/>
+    <!-- Adjust the xyz values to position the LiDAR sensor at the desired height (z offset) -->
+    <origin xyz="0 0 0.35" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Optional: Gazebo sensor configuration (for simulation purposes) -->
+  <gazebo reference="lidar_link">
+    <sensor type="ray" name="lidar_sensor">
+      <!-- Enables visualization in Gazebo -->
+      <visualize>true</visualize>
+      <update_rate>30</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <!-- 360 samples covering a full 360° -->
+            <samples>360</samples>
+            <resolution>10</resolution>
+            <min_angle>-3.14159</min_angle>
+            <max_angle>3.14159</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>10</samples>
+            <min_angle>-0.2618</min_angle>
+            <max_angle>0.2618</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <!-- Set the minimum and maximum sensing range -->
+          <min>0.2</min>
+          <max>12.0</max>
+          <resolution>0.01</resolution>
+        </range>
+      </ray>
+      <plugin name="scan" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <namespace></namespace>
+          <remapping>~/out:=/cloud</remapping>
+          <frameName>lidar_link</frameName>
+        </ros>
+      </plugin>
+    </sensor>
+  </gazebo>
+</robot>

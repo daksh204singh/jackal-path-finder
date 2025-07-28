@@ -1,0 +1,25 @@
+<launch>
+  <!-- Robot 1 -->
+  <group ns="robot_1">
+    <node pkg="rrt_exploration"
+          type="structured_goal_publisher.py"
+          name="goal_publisher"
+          output="screen"/>
+  </group>
+
+  <!-- Robot 2 -->
+  <group ns="robot_2">
+    <node pkg="rrt_exploration"
+          type="structured_goal_publisher.py"
+          name="goal_publisher"
+          output="screen"/>
+  </group>
+
+  <!-- Robot 3 -->
+  <group ns="robot_3">
+    <node pkg="rrt_exploration"
+          type="structured_goal_publisher.py"
+          name="goal_publisher"
+          output="screen"/>
+  </group>
+</launch>

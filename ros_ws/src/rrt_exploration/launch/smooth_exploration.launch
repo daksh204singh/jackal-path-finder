@@ -1,0 +1,50 @@
+<launch>
+  <!-- Load smoother navigation parameters -->
+  <rosparam file="$(find rrt_exploration)/config/smoother_params.yaml" command="load" ns="robot_1/move_base/TrajectoryPlannerROS" />
+  <rosparam file="$(find rrt_exploration)/config/smoother_params.yaml" command="load" ns="robot_2/move_base/TrajectoryPlannerROS" />
+  <rosparam file="$(find rrt_exploration)/config/smoother_params.yaml" command="load" ns="robot_3/move_base/TrajectoryPlannerROS" />
+
+  <!-- Rename the cmd_vel topics for velocity smoothers -->
+  <remap from="robot_1/cmd_vel" to="robot_1/cmd_vel_raw" />
+  <remap from="robot_2/cmd_vel" to="robot_2/cmd_vel_raw" />
+  <remap from="robot_3/cmd_vel" to="robot_3/cmd_vel_raw" />
+
+  <!-- Launch velocity smoothers -->
+  <node name="robot1_velocity_smoother" pkg="rrt_exploration" type="velocity_smoother.py" output="screen">
+    <param name="robot_name" value="robot_1"/>
+    <param name="max_accel_x" value="0.5"/>
+    <param name="max_accel_theta" value="1.0"/>
+    <param name="rate" value="20.0"/>
+  </node>
+  
+  <node name="robot2_velocity_smoother" pkg="rrt_exploration" type="velocity_smoother.py" output="screen">
+    <param name="robot_name" value="robot_2"/>
+    <param name="max_accel_x" value="0.5"/>
+    <param name="max_accel_theta" value="1.0"/>
+    <param name="rate" value="20.0"/>
+  </node>
+  
+  <node name="robot3_velocity_smoother" pkg="rrt_exploration" type="velocity_smoother.py" output="screen">
+    <param name="robot_name" value="robot_3"/>
+    <param name="max_accel_x" value="0.5"/>
+    <param name="max_accel_theta" value="1.0"/>
+    <param name="rate" value="20.0"/>
+  </node>
+
+  <!-- Launch smooth line coverage explorers -->
+  <node name="robot1_goals" pkg="rrt_exploration" type="smooth_line_coverage.py" output="screen">
+    <param name="robot_name" value="robot_1"/>
+    <param name="line_spacing" value="1.0"/>
+    <param name="waypoint_distance" value="0.5"/>
+  </node>
+  <node name="robot2_goals" pkg="rrt_exploration" type="smooth_line_coverage.py" output="screen">
+    <param name="robot_name" value="robot_2"/>
+    <param name="line_spacing" value="1.0"/>
+    <param name="waypoint_distance" value="0.5"/>
+  </node>
+  <node name="robot3_goals" pkg="rrt_exploration" type="smooth_line_coverage.py" output="screen">
+    <param name="robot_name" value="robot_3"/>
+    <param name="line_spacing" value="1.0"/>
+    <param name="waypoint_distance" value="0.5"/>
+  </node>
+</launch>

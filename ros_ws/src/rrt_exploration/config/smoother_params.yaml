@@ -1,0 +1,29 @@
+TrajectoryPlannerROS:
+  max_vel_x: 0.5
+  min_vel_x: 0.1
+  max_vel_theta: 1.0
+  min_in_place_vel_theta: 0.4
+  acc_lim_theta: 3.2
+  acc_lim_x: 2.5
+  acc_lim_y: 2.5
+  holonomic_robot: false
+  
+  # For smoother paths
+  pdist_scale: 0.6  # Lower value to care less about staying on global path
+  gdist_scale: 0.8  # Higher value to prioritize getting to goal
+  occdist_scale: 0.01  # Lower value to care less about obstacles when far away
+  
+  # Smooth acceleration
+  sim_time: 1.7  # Look ahead further
+  sim_granularity: 0.025  # Finer granularity for simulation
+  vx_samples: 8  # More samples for velocity
+  vy_samples: 0  # Non-holonomic robot
+  vth_samples: 20  # More samples for rotation
+  controller_frequency: 20.0
+  
+  # Oscillation prevention
+  oscillation_reset_dist: 0.05
+  
+  # Recovery behavior parameters
+  recovery_behavior_enabled: true
+  clearing_rotation_allowed: true

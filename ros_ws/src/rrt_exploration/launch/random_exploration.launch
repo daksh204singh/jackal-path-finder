@@ -1,0 +1,14 @@
+<launch>
+
+    <arg name="step_size" default="0.5" doc="Distance between parallel lawnmower paths"/>
+    <arg name="frame_id" default="map" doc="The coordinate frame for navigation goals"/>
+    <arg name="loop_rate" default="0.2" doc="Frequency (Hz) to publish the next goal waypoint"/>
+    <arg name="initial_delay" default="2.0" doc="Seconds to wait before starting goal publishing"/>
+    <node pkg="your_package_name" type="lawnmower_control.py" name="lawnmower_controller" output="screen">
+    <param name="step_size" value="$(arg step_size)" />
+        <param name="frame_id" value="$(arg frame_id)" />
+        <param name="loop_rate" value="$(arg loop_rate)" />
+        <param name="initial_delay" value="$(arg initial_delay)" />
+    </node>
+
+</launch>
